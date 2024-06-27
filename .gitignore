@@ -5,3 +5,5 @@ a.out
 *.json
 /minilibx-linux
 *.tgz
+so_long
+*.o
