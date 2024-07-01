@@ -22,12 +22,12 @@ FILES=so_long.c
 
 OBJS=$(patsubst %.c, %.o, $(FILES))
 
-$(NAME): MINILIBX $(OBJS) Makefile lib_so_long.h
+$(NAME): minilibx_linux $(OBJS) Makefile lib_so_long.h
 	@echo "\n📝 Compiling program $(NAME) ... 📝\n"
 	$(CC) -o $(NAME) $(OBJS) $(MLXFLAGS)
 	@echo "\n📖 $(NAME) created succesfully 📖\n"
 	
-MINILIBX:
+minilibx_linux:
 	@echo "\n- Importing minilibX ... -\n"
 	@git submodule update --init --recursive
 	@cd minilibx_linux && make && ./configure && cd ..
