@@ -13,7 +13,7 @@
 NAME=so_long
 
 ## Compile flags
-CC=gcc
+CC=gcc -g
 CFLAGS=-Wall -Wextra## -Werror
 MLXFLAGS= -L./minilibx_linux -lmlx -lXext -lX11
 
