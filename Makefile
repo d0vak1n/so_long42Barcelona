@@ -14,8 +14,8 @@ NAME=so_long
 
 ## Compile flags
 CC=gcc
-CFLAGS=-Wall -Wextra -Werror
-XFLAGS=-lmlx -lXext -lX11
+CFLAGS=-Wall -Wextra## -Werror
+MLXFLAGS= -L./minilibx_linux -lmlx -lXext -lX11
 
 ## Source files
 FILES=so_long.c
@@ -24,7 +24,7 @@ OBJS=$(patsubst %.c, %.o, $(FILES))
 
 $(NAME): $(OBJS) Makefile lib_so_long.h
 	@echo "\n📝 Compiling program $(NAME) ... 📝\n"
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(XFLAGS)
+	$(CC) -o $(NAME) $(OBJS) $(MLXFLAGS)
 	@echo "\n📖 $(NAME) created succesfully 📖\n"
 
 all: $(NAME)
@@ -40,7 +40,7 @@ clean:
 
 fclean: clean
 	@rm -rf $(NAME)
-	@echo "\n 🗑 All .a deleted 🗑\n"
+	@echo "\n 🗑 $(NAME) deleted 🗑\n"
 
 re: fclean all
 	@echo "\n🔁 Relinked 🔁\n"

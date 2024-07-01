@@ -3,7 +3,6 @@ test
 a.out
 *.dSYM
 *.json
-/minilibx-linux
 *.tgz
 so_long
 *.o
