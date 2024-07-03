@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 #include "../minilibx_linux/mlx.h"
 #include "lib_so_long.h"
+#include <stdio.h>
 
 void my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
@@ -23,16 +24,21 @@ void my_mlx_pixel_put(t_data *data, int x, int y, int color)
 int main(void)
 {
 	void *mlx;
+	void *img;
 	void *mlx_win;
-	t_data img;
+	char *relative_path = "./img/xpm/coin.xpm";
+	int img_width;
+	int img_height;
 
 	mlx = mlx_init();
-	mlx_win = mlx_new_window(mlx, 1920, 1080, "Hola Mundo :D");
-	img.img = mlx_new_image(mlx, 1920, 1080);
-	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
-								 &img.endian);
-
-	lgtbi(&img, 1920, 1080);
-	mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
+	mlx_win = mlx_new_window(mlx, 720, 420, "Hello world!");
+	img = mlx_new_image(mlx, 720, 420);
+	img = mlx_xpm_file_to_image(mlx, relative_path, &img_width, &img_height);
+	if (!img)
+	{
+		fprintf(stderr, "Error loading %s\n", relative_path);
+		return 1;
+	}
+	mlx_put_image_to_window(mlx, mlx_win, img, 0, 0);
 	mlx_loop(mlx);
 }
