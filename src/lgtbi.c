@@ -6,7 +6,7 @@
 /*   By: ramoreno <ramoreno@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 13:21:17 by ramoreno          #+#    #+#             */
-/*   Updated: 2024/07/02 13:22:02 by ramoreno         ###   ########.fr       */
+/*   Updated: 2024/07/03 13:34:31 by ramoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,5 +95,24 @@ void lgtbi(t_data *data, int x, int y)
 			i++;
 		}
 		j++;
+	}
+}
+
+void	cuadrado(t_data *data, int color)
+{
+	int i;
+	int j;
+
+	i = 0;
+	j = 0;
+	while (i < 100)
+	{
+		j = 0;
+		while (j < 100)
+		{
+			my_mlx_pixel_put(data, i, 0, color);
+			j++;
+		}
+		i++;
 	}
 }

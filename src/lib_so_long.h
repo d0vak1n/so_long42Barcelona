@@ -22,4 +22,5 @@ typedef struct s_data
 	int		endian;
 }	t_data;
 void	lgtbi(t_data *data, int x, int y);
+void	cuadrado(t_data *data, int color);
 #endif

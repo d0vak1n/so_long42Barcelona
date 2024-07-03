@@ -19,10 +19,11 @@ MLXFLAGS= -L./minilibx_linux -lmlx -lXext -lX11
 
 ## Source files
 FILES=so_long.c lgtbi.c
+FOLDER=src/
 
-OBJS=$(patsubst %.c, %.o, $(FILES))
+OBJS=$(patsubst %.c, $(FOLDER)%.o, $(FILES))
 
-$(NAME): minilibx_linux $(OBJS) Makefile lib_so_long.h
+$(NAME): minilibx_linux $(OBJS) Makefile $(FOLDER)lib_so_long.h
 	@echo "\n📝 Compiling program $(NAME) ... 📝\n"
 	$(CC) -o $(NAME) $(OBJS) $(MLXFLAGS)
 	@echo "\n📖 $(NAME) created succesfully 📖\n"
@@ -35,7 +36,7 @@ minilibx_linux:
 
 all: $(NAME)
 
-%.o: %.c
+%.o: $(FOLDER)%.c
 	$(CC) $(CFLAGS) -c $^
 
 .PHONY: all clean fclean re
