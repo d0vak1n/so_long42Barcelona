@@ -1,3 +1,9 @@
 [submodule "minilibx_linux"]
 	path = minilibx_linux
 	url = https://github.com/42Paris/minilibx-linux.git
+[submodule "get_next_line"]
+	path = get_next_line
+	url = https://github.com/d0vak1n/get_next_line42Barcelona
+[submodule "libft"]
+	path = libft
+	url = https://github.com/d0vak1n/libft42Barcelona
