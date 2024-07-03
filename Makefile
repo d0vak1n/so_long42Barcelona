@@ -18,7 +18,7 @@ CFLAGS=-Wall -Wextra## -Werror
 MLXFLAGS= -L./minilibx_linux -lmlx -lXext -lX11
 
 ## Source files
-FILES=so_long.c lgtbi.c
+FILES=so_long.c test.c
 FOLDER=src/
 
 OBJS=$(patsubst %.c, $(FOLDER)%.o, $(FILES))
