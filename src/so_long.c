@@ -30,7 +30,7 @@ void my_mlx_pixel_put(t_data *data, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
-int main(void)
+int main( char **argv, int argv )
 {
 	void *mlx;
 	void *img;
