@@ -1,0 +1,4 @@
+int checkmap(int f)
+{
+
+}

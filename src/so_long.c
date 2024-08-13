@@ -30,7 +30,7 @@ void my_mlx_pixel_put(t_data *data, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
-int main( char **argv, int argv )
+int main(char **argv, int argc)
 {
 	void *mlx;
 	void *img;
@@ -38,6 +38,8 @@ int main( char **argv, int argv )
 	char *relative_path = "./img/xpm/cofre.xpm";
 	int img_width;
 	int img_height;
+
+	checkmap();
 
 	mlx = mlx_init();
 	mlx_win = mlx_new_window(mlx, 1920, 1080, "Hello world!");
