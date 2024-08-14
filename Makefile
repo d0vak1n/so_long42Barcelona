@@ -21,11 +21,15 @@ MLXFLAGS= -L./minilibx_linux -lmlx -lXext -lX11
 FILES=so_long.c test.c
 FOLDER=src/
 
+## Libft
+LIBFT_DIR=./libft
+LIBFT=$(LIBFT_DIR)/libft.a
+
 OBJS=$(patsubst %.c, $(FOLDER)%.o, $(FILES))
 
-$(NAME): minilibx_linux $(OBJS) Makefile $(FOLDER)lib_so_long.h
+$(NAME): minilibx_linux $(LIBFT) $(OBJS) Makefile $(FOLDER)lib_so_long.h
 	@echo "\n📝 Compiling program $(NAME) ... 📝\n"
-	$(CC) -o $(NAME) $(OBJS) $(MLXFLAGS)
+	$(CC) -o $(NAME) $(OBJS) $(MLXFLAGS) -L$(LIBFT_DIR) -lft
 	@echo "\n📖 $(NAME) created succesfully 📖\n"
 	
 minilibx_linux:
@@ -33,6 +37,12 @@ minilibx_linux:
 	@git submodule update --init --recursive
 	@cd minilibx_linux && make && ./configure && cd ..
 	@echo "\n- MinilibX imported succesfully -\n"
+
+$(LIBFT):
+	@echo "\n- Compiling libft ... -\n"
+	@$(MAKE) -C $(LIBFT_DIR)
+	@echo "\n- Libft compiled succesfully -\n"
+
 
 all: $(NAME)
 
@@ -43,10 +53,12 @@ all: $(NAME)
 
 clean:
 	@rm -f $(OBJS)
+	@$(MAKE) -C $(LIBFT_DIR) clean
 	@echo "\n 🗑 All .o deleted 🗑\n"
 
 fclean: clean
 	@rm -rf $(NAME)
+	@$(MAKE) -C $(LIBFT_DIR) fclean
 	@echo "\n 🗑 $(NAME) deleted 🗑\n"
 
 re: fclean all
