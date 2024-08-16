@@ -47,14 +47,13 @@ int main(int argc, char **argv)
 	}
 
 
+
 	void *mlx;
 	void *img;
 	void *mlx_win;
 	char *relative_path = "./img/xpm/cofre.xpm";
 	int img_width;
 	int img_height;
-
-	// checkmap();
 
 	mlx = mlx_init();
 	mlx_win = mlx_new_window(mlx, 1920, 1080, "Hello world!");

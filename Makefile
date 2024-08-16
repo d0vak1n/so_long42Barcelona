@@ -25,6 +25,10 @@ FOLDER=src/
 LIBFT_DIR=./libft
 LIBFT=$(LIBFT_DIR)/libft.a
 
+## Libftprintf
+LIBFTPRINTF_DIR=./ft_printf
+LIBFTPRINTF=$(LIBFTPRINTF_DIR)/ft_printf
+
 OBJS=$(patsubst %.c, $(FOLDER)%.o, $(FILES))
 
 $(NAME): minilibx_linux $(LIBFT) $(OBJS) Makefile $(FOLDER)lib_so_long.h
@@ -33,7 +37,7 @@ $(NAME): minilibx_linux $(LIBFT) $(OBJS) Makefile $(FOLDER)lib_so_long.h
 	@echo "\n📖 $(NAME) created succesfully 📖\n"
 	
 minilibx_linux:
-	@echo "\n- Importing minilibX ... -\n"
+	@echo "\n- Importing minilibX, libft, ftprintf, get_next_line ... -\n"
 	@git submodule update --init --recursive
 	@cd minilibx_linux && make && ./configure && cd ..
 	@echo "\n- MinilibX imported succesfully -\n"
