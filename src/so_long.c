@@ -21,7 +21,7 @@ Cada sprite sera de 120x120
 #include "../minilibx_linux/mlx.h"
 #include "lib_so_long.h"
 #include "../libft/libft.h"
-#include <stdio.h>
+#include "../get_next_line/get_next_line.h"
 
 void my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
@@ -35,35 +35,15 @@ int main(int argc, char **argv)
 {
 	if (argc != 2)
 	{
-		printf("Error\nOnly 1 argument allowed\n");
+		ft_write("Error\nOnly 1 argument allowed\n");
 		return (1);
 	}
 	char *filename = argv[1];
 	char *extension = ft_strrchr(filename, '.');
 	if (extension == NULL || ft_strncmp(extension, ".ber", 4) != 0)
 	{
-		printf("Error\nNot a .ber file\n");
+		ft_write("Error\nNot a .ber file\n");
 		return (1);
 	}
-
-
-
-	void *mlx;
-	void *img;
-	void *mlx_win;
-	char *relative_path = "./img/xpm/cofre.xpm";
-	int img_width;
-	int img_height;
-
-	mlx = mlx_init();
-	mlx_win = mlx_new_window(mlx, 1920, 1080, "Hello world!");
-	img = mlx_new_image(mlx, 1920, 1080);
-	img = mlx_xpm_file_to_image(mlx, relative_path, &img_width, &img_height);
-	if (!img)
-	{
-		fprintf(stderr, "Error loading %s\n", relative_path);
-		return 1;
-	}
-	mlx_put_image_to_window(mlx, mlx_win, img, 0, 0);
-	mlx_loop(mlx);
+	ft_checkmap(filename);
 }
