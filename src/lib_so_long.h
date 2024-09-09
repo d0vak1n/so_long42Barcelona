@@ -23,4 +23,6 @@ typedef struct s_data
 }	t_data;
 void	lgtbi(t_data *data, int x, int y);
 void	cuadrado(t_data *data, int color);
+int		ft_write(char *str);
+int 	ft_checkmap(char *f);
 #endif
