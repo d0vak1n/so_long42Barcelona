@@ -18,22 +18,18 @@ CFLAGS=-Wall -Wextra## -Werror
 MLXFLAGS= -L./minilibx_linux -lmlx -lXext -lX11
 
 ## Source files
-FILES=so_long.c test.c
+FILES=so_long.c ft_message_utils.c ft_checkmap.c 
 FOLDER=src/
 
 ## Libft
 LIBFT_DIR=./libft
 LIBFT=$(LIBFT_DIR)/libft.a
 
-## Libftprintf
-LIBFTPRINTF_DIR=./ft_printf
-LIBFTPRINTF=$(LIBFTPRINTF_DIR)/ft_printf
-
 OBJS=$(patsubst %.c, $(FOLDER)%.o, $(FILES))
 
 $(NAME): minilibx_linux $(LIBFT) $(OBJS) Makefile $(FOLDER)lib_so_long.h
 	@echo "\n📝 Compiling program $(NAME) ... 📝\n"
-	$(CC) -o $(NAME) $(OBJS) $(MLXFLAGS) -L$(LIBFT_DIR) -lft
+	$(CC) -o $(NAME) $(OBJS) $(MLXFLAGS) -L$(LIBFT_DIR)  -lft
 	@echo "\n📖 $(NAME) created succesfully 📖\n"
 	
 minilibx_linux:
