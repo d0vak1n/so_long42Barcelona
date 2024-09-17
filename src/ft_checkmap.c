@@ -6,7 +6,7 @@
 /*   By: ramoreno <ramoreno@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 13:12:21 by ramoreno          #+#    #+#             */
-/*   Updated: 2024/09/17 17:56:47 by ramoreno         ###   ########.fr       */
+/*   Updated: 2024/09/17 18:01:19 by ramoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,6 @@ int	_check_size(int fd)
 			return (0);
 		}
 	}
-	if (line && line[ft_strlen(line) - 1] != '\n')
-	x++;
 	if (x < y)
 	{
 		ft_write("Error\nMap is not rectangular\n");
