@@ -17,15 +17,19 @@ CC=gcc -g
 CFLAGS=-Wall -Wextra## -Werror
 MLXFLAGS= -L./minilibx_linux -lmlx -lXext -lX11
 
-## Source files
-FILES=so_long.c ft_message_utils.c ft_checkmap.c 
-FOLDER=src/
-
 ## Libft
 LIBFT_DIR=./libft
 LIBFT=$(LIBFT_DIR)/libft.a
 
-OBJS=$(patsubst %.c, $(FOLDER)%.o, $(FILES))
+## Get next line
+GNL_DIR=./get_next_line
+
+## Source files
+FILES=so_long.c ft_message_utils.c ft_checkmap.c
+GNL_FILES=$(GNL_DIR)/get_next_line.c $(GNL_DIR)/get_next_line_utils.c
+FOLDER=src/
+
+OBJS=$(patsubst %.c, $(FOLDER)%.o, $(FILES)) $(patsubst %.c, %.o, $(GNL_FILES))
 
 $(NAME): minilibx_linux $(LIBFT) $(OBJS) Makefile $(FOLDER)lib_so_long.h
 	@echo "\n📝 Compiling program $(NAME) ... 📝\n"
