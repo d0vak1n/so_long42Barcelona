@@ -6,7 +6,7 @@
 /*   By: ramoreno <ramoreno@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 13:12:21 by ramoreno          #+#    #+#             */
-/*   Updated: 2024/09/17 16:28:07 by ramoreno         ###   ########.fr       */
+/*   Updated: 2024/09/17 17:56:47 by ramoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,13 @@
 
 int	_check_size(int fd)
 {
-	char *line;
-	int prev_x;
-	int x;
-	int y;
+	char	*line;
+	int		prev_x;
+	int		x;
+	int		y;
 
 	x = 0;
 	y = 0;
-
 	line = get_next_line(fd);
 	y++;
 	x = ft_strlen(line);
@@ -34,12 +33,15 @@ int	_check_size(int fd)
 		prev_x = x;
 		x = ft_strlen(line);
 		printf("x: %d, prev_x: %d\n", x, prev_x);
+		printf("y: %d\n", y);
 		if (x != prev_x)
 		{
 			ft_write("Error\nMap is not rectangular\n");
 			return (0);
 		}
 	}
+	if (line && line[ft_strlen(line) - 1] != '\n')
+	x++;
 	if (x < y)
 	{
 		ft_write("Error\nMap is not rectangular\n");
@@ -58,7 +60,7 @@ int	ft_checkmap(char* f)
 	}
 	if (_check_size(fd) != 0)
 	{
-		ft_write("Error\nMap is rectangular\n");
+		ft_write("Nice!\nMap is rectangular\n");
 		return (1);
 	}
 	else
