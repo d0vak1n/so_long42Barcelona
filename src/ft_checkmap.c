@@ -15,6 +15,12 @@
 #include "../get_next_line/get_next_line.h"
 #include <stdio.h>
 
+void _map_error(char *str)
+{
+	ft_write(str);
+	exit(1);
+}
+
 int	_check_size(int fd)
 {
 	char *line;
@@ -34,17 +40,14 @@ int	_check_size(int fd)
 		prev_x = x;
 		x = ft_strlen(line);
 		printf("x: %d, prev_x: %d\n", x, prev_x);
+		printf("line: %s", line);
 		if (x != prev_x)
-		{
-			ft_write("Error\nMap is not rectangular\n");
-			return (0);
-		}
+			_map_error("Error\nMap is not rectangular\n");
 	}
 	if (x < y)
-	{
-		ft_write("Error\nMap is not rectangular\n");
+		_map_error("Error\nMap is not rectangular\n");
+	else
 		return (0);
-	}
 	return (1);
 }
 
@@ -52,10 +55,7 @@ int	ft_checkmap(char* f)
 {
 	int fd = open(f, O_RDONLY);
 	if (fd == -1)
-	{
-		ft_write("Error\nFile not found\n");
-		return (1);
-	}
+		_map_error("Error\nFile not found\n");
 	if (_check_size(fd) != 0)
 	{
 		ft_write("Error\nMap is rectangular\n");
