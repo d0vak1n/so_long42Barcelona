@@ -32,6 +32,8 @@ int	_check_size(int fd)
 	y = 0;
 
 	line = get_next_line(fd);
+	if (!line)
+		_map_error("Error\nEmpty file\n");
 	y++;
 	x = ft_strlen(line);
 	while ((line = get_next_line(fd)))
@@ -47,7 +49,7 @@ int	_check_size(int fd)
 	if (x < y)
 		_map_error("Error\nMap is not rectangular\n");
 	else
-		return (0);
+		return (0); //Success
 	return (1);
 }
 
@@ -56,15 +58,12 @@ int	ft_checkmap(char* f)
 	int fd = open(f, O_RDONLY);
 	if (fd == -1)
 		_map_error("Error\nFile not found\n");
-	if (_check_size(fd) != 0)
+	if (_check_size(fd) == 0)
 	{
-		ft_write("Error\nMap is rectangular\n");
-		return (1);
+		ft_write("Map is rectangular\n");
+		return (0);
 	}
 	else
-	{
-		ft_write("Error\nMap is not rectangular\n");
-		return (1);
-	}
+		_map_error("Error\nMap is not rectangular\n");
 }
 
