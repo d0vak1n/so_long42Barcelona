@@ -23,23 +23,26 @@ Cada sprite sera de 120x120
 #include "../libft/libft.h"
 #include "../get_next_line/get_next_line.h"
 
-void my_mlx_pixel_put(t_data *data, int x, int y, int color)
+void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
-	char *dst;
+	char	*dst;
 
 	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 256));
 	*(unsigned int *)dst = color;
 }
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
+	char	*filename;
+	char	*extension;
+
 	if (argc != 2)
 	{
 		ft_write("Error\nOnly 1 argument allowed\n");
 		return (1);
 	}
-	char *filename = argv[1];
-	char *extension = ft_strrchr(filename, '.');
+	filename = argv[1];
+	extension = ft_strrchr(filename, '.');
 	if (extension == NULL || ft_strncmp(extension, ".ber", 4) != 0)
 	{
 		ft_write("Error\nNot a .ber file\n");
