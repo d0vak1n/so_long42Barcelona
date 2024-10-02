@@ -6,7 +6,7 @@
 /*   By: ramoreno <ramoreno@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 13:12:21 by ramoreno          #+#    #+#             */
-/*   Updated: 2024/10/02 16:31:52 by ramoreno         ###   ########.fr       */
+/*   Updated: 2024/10/02 18:27:37 by ramoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "../get_next_line/get_next_line.h"
 #include <stdio.h>
 
-void _map_error(char *str)
+void	_map_error(char *str)
 {
 	ft_write(str);
 	exit(1);
@@ -23,37 +23,38 @@ void _map_error(char *str)
 
 int	_check_size(int fd)
 {
-	char *line;
-	int prev_x;
-	int x;
-	int y;
+	char	*line;
+	int		prev_x;
+	int		x;
+	int		y;
 
 	x = 0;
 	y = 0;
-
 	line = get_next_line(fd);
 	if (!line)
 		_map_error("Error\nEmpty file\n");
-	y++;
-	x = ft_strlen(line);
-	while ((line = get_next_line(fd)))
+	prev_x = ft_strlen(line);
+	while (line)
 	{
 		y++;
-		prev_x = x;
 		x = ft_strlen(line);
 		if (x != prev_x)
-			_map_error("Error\nMap is not rectangular: Lines are different size\n");
+			_map_error("Error\nMap is not rectangular\n");
+		prev_x = x;
+		line = get_next_line(fd);
 	}
 	if (x <= y)
-		_map_error("Error\nMap is not rectangular: height bigger than width\n");
+		_map_error("Error\nMap is not rectangular: height >= width\n");
 	else
-		return (0); //Success
+		return (0);
 	return (1);
 }
 
-int	ft_checkmap(char* f)
+int	ft_checkmap(char *f)
 {
-	int fd = open(f, O_RDONLY);
+	int	fd;
+
+	fd = open(f, O_RDONLY);
 	if (fd == -1)
 		_map_error("Error\nFile not found\n");
 	if (_check_size(fd) == 0)
@@ -63,5 +64,5 @@ int	ft_checkmap(char* f)
 	}
 	else
 		_map_error("Error\nMap is not rectangular\n");
+	return (1);
 }
-
