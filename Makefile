@@ -43,6 +43,7 @@ minilibx_linux:
 	@echo "\n- MinilibX imported succesfully -\n"
 
 $(LIBFT):
+	@git submodule update --init --recursive
 	@echo "\n- Compiling libft ... -\n"
 	@$(MAKE) -C $(LIBFT_DIR)
 	@echo "\n- Libft compiled succesfully -\n"
