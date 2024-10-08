@@ -6,13 +6,14 @@
 /*   By: ramoreno <ramoreno@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 13:12:21 by ramoreno          #+#    #+#             */
-/*   Updated: 2024/10/02 19:34:38 by ramoreno         ###   ########.fr       */
+/*   Updated: 2024/10/08 18:23:49 by ramoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lib_so_long.h"
 #include <fcntl.h>
 #include "../get_next_line/get_next_line.h"
+#include "../libft/libft.h"
 #include <stdio.h>
 
 static void	_map_error(char *str)
@@ -50,34 +51,34 @@ static int	_check_size(int fd)
 	return (1);
 }
 
-static int	_check_walls(int fd)
+static	int	_check_walls(int fd)
 {
 	char	*line;
 	char	*prev_line;
 	int		i;
+	int		len;
 
-	i = 0;
+	i = -1;
+	len = 0;
 	line = get_next_line(fd);
 	if (!line)
 		_map_error("Error\nEmpty file\n");
-	while (line[++i]) // Priemra linea
-	{
+	len = ft_strlen(line);
+	while (line[++i] && i <= len - 1 - 1)
 		if (line[i] != '1')
-			_map_error("Error\nMap is not surrounded by walls1");
-	}
-	while (line) //Segunda linea
+			_map_error("Error\nMap is not surrounded by walls in top");
+	while (line)
 	{
+		if (line[0] != '1' && line[len - 3] != '1')
+			_map_error("Error\nMap is not surrounded by walls in middle");
 		prev_line = line;
-		if (line[0] != '1' || line[ft_strlen(line) - 1] != '1')
-			ft_write("toma toma2\n");
+		free (line);
 		line = get_next_line(fd);
 	}
 	i = -1;
-	while (prev_line[++i]) // ultima linea
-	{
-		if (line[i] != '1')
-			_map_error("Error\nMap is not surrounded by walls3");
-	}
+	while (prev_line[++i])
+		if (prev_line[i] != '1' && prev_line[len - 1] != '\n')
+			_map_error("Error\nMap is not surrounded by walls in bottom");
 	return (0);
 }
 
